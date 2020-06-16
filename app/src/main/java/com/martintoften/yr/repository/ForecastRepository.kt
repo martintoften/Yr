@@ -1,15 +1,15 @@
 package com.martintoften.yr.repository
 
-import com.martintoften.yr.network.model.search.SearchResponse
 import com.martintoften.yr.network.YrApi
 import com.martintoften.yr.network.model.NetworkResult
+import com.martintoften.yr.network.model.forecast.ForecastResponse
 
-class SearchRepository(
+class ForecastRepository(
     private val yrApi: YrApi
 ) {
-    suspend fun search(query: String): NetworkResult<SearchResponse> {
+    suspend fun getForecast(locationId: String): NetworkResult<ForecastResponse> {
         return try {
-            val response = yrApi.search(query = query)
+            val response = yrApi.forecast(locationId = locationId)
             val responseBody = response.body()
 
             if (response.isSuccessful && responseBody != null) {

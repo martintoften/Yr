@@ -3,7 +3,6 @@ package com.martintoften.yr.network
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,7 +11,7 @@ import java.util.concurrent.TimeUnit
 
 private const val SEARCH_API_URL = "https://www.yr.no/api/v0/"
 
-fun buildSearchApi(): SearchApi {
+fun buildYrApi(): YrApi {
     val client = getHttpClient(listOf(getLoggingInterceptor()))
     val contentType = "application/json".toMediaType()
 
@@ -22,7 +21,7 @@ fun buildSearchApi(): SearchApi {
         .addConverterFactory(Json.asConverterFactory(contentType))
         .build()
 
-    return retrofit.create(SearchApi::class.java)
+    return retrofit.create(YrApi::class.java)
 }
 
 private fun getHttpClient(interceptors: List<Interceptor> = emptyList()): OkHttpClient.Builder {
