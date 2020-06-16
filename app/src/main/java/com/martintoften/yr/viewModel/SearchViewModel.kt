@@ -1,9 +1,9 @@
 package com.martintoften.yr.viewModel
 
-import com.martintoften.yr.network.model.SearchResponse
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.martintoften.yr.network.model.SearchResponse
+import com.martintoften.yr.repository.Result
 import com.martintoften.yr.repository.SearchRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
@@ -36,8 +36,19 @@ class SearchViewModel(
         }
     }
 
-    private fun handleSearchResult(result: SearchResponse) {
-        Log.d("Search result", result.totalResults.toString())
+    private fun handleSearchResult(result: Result<SearchResponse>) {
+        when (result) {
+            is Result.Success -> handleSuccess(result)
+            is Result.Error -> handleError(result)
+        }
+    }
+
+    private fun handleSuccess(success: Result.Success<SearchResponse>) {
+        // TODO: Pass to view
+    }
+
+    private fun handleError(error: Result.Error) {
+        // TODO: Pass to view
     }
 
     fun search(value: String) {

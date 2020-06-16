@@ -1,6 +1,7 @@
 package com.martintoften.yr.network
 
 import com.martintoften.yr.network.model.SearchResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -9,5 +10,5 @@ interface SearchApi {
     suspend fun search(
         @Query("q") query: String,
         @Query("language") type: String = "nn"
-    ): SearchResponse
+    ): Response<SearchResponse>
 }
