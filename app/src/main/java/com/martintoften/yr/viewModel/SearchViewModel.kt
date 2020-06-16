@@ -1,8 +1,10 @@
 package com.martintoften.yr.viewModel
 
+import com.martintoften.yr.network.model.SearchResponse
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.martintoften.yr.repository.SearchRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.asFlow
@@ -14,7 +16,9 @@ import kotlinx.coroutines.launch
 
 private const val DEBOUNCE_DELAY = 400L
 
-class SearchViewModel : ViewModel() {
+class SearchViewModel(
+    private val searchRepository: SearchRepository
+) : ViewModel() {
 
     private val channel = ConflatedBroadcastChannel<String>()
 
@@ -26,14 +30,14 @@ class SearchViewModel : ViewModel() {
         viewModelScope.launch {
             channel.asFlow()
                 .debounce(DEBOUNCE_DELAY)
-                .map { it + "1" }
+                .map { searchRepository.search(it) }
                 .flowOn(Dispatchers.IO)
                 .collect { handleSearchResult(it) }
         }
     }
 
-    private fun handleSearchResult(result: String) {
-        Log.d("Search result", result)
+    private fun handleSearchResult(result: SearchResponse) {
+        Log.d("Search result", result.totalResults.toString())
     }
 
     fun search(value: String) {

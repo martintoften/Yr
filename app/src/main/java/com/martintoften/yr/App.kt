@@ -1,6 +1,8 @@
 package com.martintoften.yr
 
 import android.app.Application
+import com.martintoften.yr.di.networkModule
+import com.martintoften.yr.di.repositoryModule
 import com.martintoften.yr.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -20,7 +22,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(viewModelModule)
+            modules(viewModelModule, networkModule, repositoryModule)
         }
     }
 }
