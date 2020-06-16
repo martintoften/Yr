@@ -7,11 +7,13 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_search.view.*
 
 class SearchViewHolder(
-    override val containerView: View
+    override val containerView: View,
+    val callback: (ViewLocation) -> Unit
 ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
     fun bindItem(location: ViewLocation) {
         containerView.title.text = location.name
         containerView.subTitle.text = getSubTitle(location)
+        containerView.root.setOnClickListener { callback(location) }
     }
 
     private fun getSubTitle(location: ViewLocation): String {

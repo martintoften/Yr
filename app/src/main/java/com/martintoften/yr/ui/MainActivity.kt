@@ -1,5 +1,6 @@
 package com.martintoften.yr.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -32,7 +33,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initList() {
-        searchList.adapter = SearchAdapter()
+        searchList.adapter = SearchAdapter { onSearchItemClicked(it) }
+    }
+
+    private fun onSearchItemClicked(location: ViewLocation) {
+        val intent = Intent(this, ForecastActivity::class.java).apply {
+            putExtra(ForecastActivity.LOCATION, location)
+        }
+        startActivity(intent)
     }
 
     private fun initSearch() {

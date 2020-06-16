@@ -8,7 +8,9 @@ import com.martintoften.yr.R
 import com.martintoften.yr.ui.model.ViewLocation
 import com.martintoften.yr.util.Differ
 
-class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
+class SearchAdapter(
+    private val callback: (ViewLocation) -> Unit
+) : RecyclerView.Adapter<SearchViewHolder>() {
 
     private val items = mutableListOf<ViewLocation>()
 
@@ -21,7 +23,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_search, parent, false)
-        return SearchViewHolder(view)
+        return SearchViewHolder(view, callback)
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
