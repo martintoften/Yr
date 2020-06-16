@@ -1,10 +1,10 @@
 package com.martintoften.yr.ui.viewModel.mapper
 
-import com.martintoften.yr.network.model.Category
-import com.martintoften.yr.network.model.Location
-import com.martintoften.yr.network.model.Region
-import com.martintoften.yr.network.model.SearchResponse
-import com.martintoften.yr.network.model.SubRegion
+import com.martintoften.yr.network.model.search.Category
+import com.martintoften.yr.network.model.search.Location
+import com.martintoften.yr.network.model.search.Region
+import com.martintoften.yr.network.model.search.SearchResponse
+import com.martintoften.yr.network.model.search.SubRegion
 import com.martintoften.yr.ui.model.ViewCategory
 import com.martintoften.yr.ui.model.ViewLocation
 import com.martintoften.yr.ui.model.ViewRegion

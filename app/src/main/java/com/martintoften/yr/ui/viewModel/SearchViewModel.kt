@@ -3,7 +3,7 @@ package com.martintoften.yr.ui.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.martintoften.yr.network.model.NetworkResult
-import com.martintoften.yr.network.model.SearchResponse
+import com.martintoften.yr.network.model.search.SearchResponse
 import com.martintoften.yr.repository.SearchRepository
 import com.martintoften.yr.ui.model.ViewLocation
 import com.martintoften.yr.ui.model.ViewState

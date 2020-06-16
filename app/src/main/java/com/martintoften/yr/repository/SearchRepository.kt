@@ -1,6 +1,6 @@
 package com.martintoften.yr.repository
 
-import com.martintoften.yr.network.model.SearchResponse
+import com.martintoften.yr.network.model.search.SearchResponse
 import com.martintoften.yr.network.SearchApi
 import com.martintoften.yr.network.model.NetworkResult
 

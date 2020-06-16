@@ -1,6 +1,6 @@
 package com.martintoften.yr.network
 
-import com.martintoften.yr.network.model.SearchResponse
+import com.martintoften.yr.network.model.search.SearchResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

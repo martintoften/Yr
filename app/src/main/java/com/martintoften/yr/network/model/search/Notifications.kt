@@ -1,8 +1,8 @@
-package com.martintoften.yr.network.model
+package com.martintoften.yr.network.model.search
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ExtremeForecasts(
+data class Notifications(
     val href: String? = null
 )

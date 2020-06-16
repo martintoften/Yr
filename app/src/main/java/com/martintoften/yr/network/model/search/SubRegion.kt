@@ -1,9 +1,9 @@
-package com.martintoften.yr.network.model
+package com.martintoften.yr.network.model.search
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Region(
+data class SubRegion(
     val id: String? = null,
     val name: String? = null
 )

@@ -1,5 +1,7 @@
-package com.martintoften.yr.network.model
+package com.martintoften.yr.network.model.search
 
+import com.martintoften.yr.network.model.search.Embedded
+import com.martintoften.yr.network.model.search.LinksX
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
