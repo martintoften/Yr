@@ -2,23 +2,23 @@ package com.martintoften.yr.repository
 
 import com.martintoften.yr.network.model.SearchResponse
 import com.martintoften.yr.network.SearchApi
-
-sealed class Result<out T> {
-    data class Success<out T>(val value: T): Result<T>()
-    data class Error(val code: Int? = null, val throwable: Throwable? = null): Result<Nothing>()
-}
+import com.martintoften.yr.network.model.NetworkResult
 
 class SearchRepository(
     private val searchApi: SearchApi
 ) {
-    suspend fun search(query: String): Result<SearchResponse> {
-        val response = searchApi.search(query = query)
-        val responseBody = response.body()
+    suspend fun search(query: String): NetworkResult<SearchResponse> {
+        return try {
+            val response = searchApi.search(query = query)
+            val responseBody = response.body()
 
-        return if (response.isSuccessful && responseBody != null) {
-            Result.Success(responseBody)
-        } else {
-            Result.Error(response.code())
+            if (response.isSuccessful && responseBody != null) {
+                NetworkResult.Success(responseBody)
+            } else {
+                NetworkResult.Error(response.code())
+            }
+        } catch (error: Throwable) {
+            NetworkResult.Error(throwable = error)
         }
     }
 }
