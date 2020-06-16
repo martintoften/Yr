@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CelestialEvents(
-    val href: String?
+    val href: String? = null
 )

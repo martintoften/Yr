@@ -6,8 +6,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SearchResponse(
     @SerialName("_embedded")
-    val embedded: Embedded?,
+    val embedded: Embedded? = null,
     @SerialName("_links")
-    val links: LinksX?,
+    val links: LinksX? = null,
     val totalResults: Int? = 0
 )

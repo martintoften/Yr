@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Embedded(
-    val location: List<Location>?
+    val location: List<Location> = emptyList()
 )

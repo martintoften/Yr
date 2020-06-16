@@ -6,16 +6,16 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Location(
     @SerialName("_links")
-    val links: Links?,
-    val category: Category?,
-    val country: Country?,
-    val elevation: Int?,
-    val id: String?,
-    val name: String?,
-    val position: Position?,
-    val region: Region?,
+    val links: Links? = null,
+    val category: Category? = null,
+    val country: Country? = null,
+    val elevation: Int? = null,
+    val id: String? = null,
+    val name: String? = null,
+    val position: Position? = null,
+    val region: Region? = null,
     @SerialName("subregion")
-    val subRegion: SubRegion?,
-    val timeZone: String?,
-    val urlPath: String?
+    val subRegion: SubRegion? = null,
+    val timeZone: String? = null,
+    val urlPath: String? = null
 )

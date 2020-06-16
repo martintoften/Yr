@@ -6,19 +6,19 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Links(
     @SerialName("airqualityforecast")
-    val airqualityForecast: AirqualityForecast?,
+    val airqualityForecast: AirqualityForecast? = null,
     @SerialName("bathingtemperatures")
-    val bathingTemperatures: BathingTemperatures?,
+    val bathingTemperatures: BathingTemperatures? = null,
     @SerialName("celestialevents")
-    val celestialEvents: CelestialEvents?,
+    val celestialEvents: CelestialEvents? = null,
     @SerialName("extremeforecasts")
-    val extremeForecasts: ExtremeForecasts?,
-    val forecast: Forecast?,
+    val extremeForecasts: ExtremeForecasts? = null,
+    val forecast: Forecast? = null,
     @SerialName("mapfeature")
-    val mapFeature: MapFeature?,
-    val notifications: Notifications?,
-    val now: Now?,
-    val observations: List<Observation>?,
-    val pollen: Pollen?,
-    val self: Self?
+    val mapFeature: MapFeature? = null,
+    val notifications: Notifications? = null,
+    val now: Now? = null,
+    val observations: List<Observation> = emptyList(),
+    val pollen: Pollen? = null,
+    val self: Self? = null
 )

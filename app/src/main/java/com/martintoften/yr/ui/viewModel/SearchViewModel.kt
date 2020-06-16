@@ -7,6 +7,7 @@ import com.martintoften.yr.repository.Result
 import com.martintoften.yr.repository.SearchRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
@@ -21,6 +22,8 @@ class SearchViewModel(
 ) : ViewModel() {
 
     private val channel = ConflatedBroadcastChannel<String>()
+
+    val search = MutableStateFlow<SearchResponse?>(null)
 
     init {
         initSearchListener()
@@ -44,7 +47,7 @@ class SearchViewModel(
     }
 
     private fun handleSuccess(success: Result.Success<SearchResponse>) {
-        // TODO: Pass to view
+        search.value = success.value
     }
 
     private fun handleError(error: Result.Error) {
