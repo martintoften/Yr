@@ -27,6 +27,7 @@ class SearchViewModel(
 ) : ViewModel() {
 
     private val channel = ConflatedBroadcastChannel<String>()
+    private var lastQuery = ""
 
     private val _search = MutableStateFlow<ViewState<List<ViewLocation>>?>(null)
     val search = _search as StateFlow<ViewState<List<ViewLocation>>?>
@@ -58,11 +59,15 @@ class SearchViewModel(
         }
     }
 
-    fun search(value: String) {
-        if (value.length <= 1) return
+    fun search(query: String) {
+        if (query.length <= 1 || lastQuery == query) {
+            return
+        }
+
+        lastQuery = query
 
         viewModelScope.launch {
-            channel.send(value)
+            channel.send(query)
         }
     }
 }
