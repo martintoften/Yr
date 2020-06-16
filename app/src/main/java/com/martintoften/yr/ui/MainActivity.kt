@@ -6,7 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.martintoften.yr.R
-import com.martintoften.yr.network.model.SearchResponse
+import com.martintoften.yr.ui.list.search.SearchAdapter
+import com.martintoften.yr.ui.model.ViewLocation
 import com.martintoften.yr.ui.model.ViewState
 import com.martintoften.yr.ui.viewModel.SearchViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,8 +26,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        initList()
         initSearch()
         initObservers()
+    }
+
+    private fun initList() {
+        searchList.adapter = SearchAdapter()
     }
 
     private fun initSearch() {
@@ -43,13 +49,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleSearchResult(result: ViewState<SearchResponse>) {
+    private fun handleSearchResult(result: ViewState<List<ViewLocation>>) {
         when (result) {
             is ViewState.Loading -> {
                 Log.d("RESULT", "LOADING")
             }
             is ViewState.Success -> {
-                Log.d("RESULT", "SUCCESS")
+                val adapter = searchList.adapter as? SearchAdapter?
+                val locations = result.data
+                adapter?.setItems(locations)
             }
             is ViewState.Failure -> {
                 Log.d("RESULT", "FAILURE")
