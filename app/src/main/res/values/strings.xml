@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Yr</string>
+    <string name="search_location_hint">Søk etter et sted…</string>
 </resources>
