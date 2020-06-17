@@ -6,12 +6,14 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ViewLocation(
-    override val id: String,
+    val id: String,
     val name: String,
     val category : ViewCategory?,
     val region: ViewRegion?,
     val subRegion: ViewSubRegion?
-) : Parcelable, Diffable
+) : Parcelable, Diffable {
+    override fun getIdentifier() = id
+}
 
 @Parcelize
 data class ViewCategory(

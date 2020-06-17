@@ -3,7 +3,7 @@ package com.martintoften.yr.util
 import androidx.recyclerview.widget.DiffUtil
 
 interface Diffable {
-    val id: String
+    fun getIdentifier(): String
 }
 
 class Differ<T : Diffable>(
@@ -18,6 +18,6 @@ class Differ<T : Diffable>(
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return old[oldItemPosition].id == new[newItemPosition].id
+        return old[oldItemPosition].getIdentifier() == new[newItemPosition].getIdentifier()
     }
 }
