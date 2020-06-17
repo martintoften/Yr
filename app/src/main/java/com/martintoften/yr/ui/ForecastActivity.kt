@@ -57,11 +57,15 @@ class ForecastActivity : AppCompatActivity() {
             is ViewState.Success -> {
                 val adapter = forecastList.adapter as? ForecastAdapter?
                 adapter?.setItems(result.data)
+                overlay.isOverlayVisible(false)
             }
             is ViewState.Failure -> {
                 Log.e("Forecast", result.throwable.toString())
+                overlay.isOverlayVisible(false)
             }
-            is ViewState.Loading -> {}
+            is ViewState.Loading -> {
+                overlay.isOverlayVisible(true)
+            }
         }
     }
 }

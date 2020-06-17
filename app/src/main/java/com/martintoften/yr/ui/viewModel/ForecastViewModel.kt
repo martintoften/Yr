@@ -16,14 +16,15 @@ class ForecastViewModel(
     private val forecastRepository: ForecastRepository
 ) : ViewModel() {
 
+    val forecast = MutableStateFlow<ViewState<List<ViewForecast>>?>(null)
+
     init {
         getForecast(locationId)
     }
 
-    val forecast = MutableStateFlow<ViewState<List<ViewForecast>>?>(null)
-
     private fun getForecast(locationId: String) {
         viewModelScope.launch {
+            forecast.value = ViewState.Loading()
             val result = forecastRepository.getForecast(locationId)
             handleForecastResult(result)
         }
