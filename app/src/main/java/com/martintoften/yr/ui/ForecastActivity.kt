@@ -6,10 +6,15 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.martintoften.yr.R
+import com.martintoften.yr.ui.list.forecast.ForecastAdapter
+import com.martintoften.yr.ui.model.ViewForecast
 import com.martintoften.yr.ui.model.ViewLocation
+import com.martintoften.yr.ui.model.ViewState
 import com.martintoften.yr.ui.viewModel.ForecastViewModel
 import com.martintoften.yr.ui.viewModel.factory.ForecastViewModelFactory
+import kotlinx.android.synthetic.main.activity_forecast.*
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.filterNotNull
 import org.koin.android.ext.android.get
 
 class ForecastActivity : AppCompatActivity() {
@@ -31,8 +36,32 @@ class ForecastActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        initList()
+        initObservers()
+    }
+
+    private fun initList() {
+        forecastList.adapter = ForecastAdapter()
+    }
+
+    private fun initObservers() {
         lifecycleScope.launchWhenStarted {
-            forecastViewModel.forecast.collect { Log.d("hello", "") }
+            forecastViewModel.forecast
+                .filterNotNull()
+                .collect { handleForecast(it) }
+        }
+    }
+
+    private fun handleForecast(result: ViewState<List<ViewForecast>>) {
+        when (result) {
+            is ViewState.Success -> {
+                val adapter = forecastList.adapter as? ForecastAdapter?
+                adapter?.setItems(result.data)
+            }
+            is ViewState.Failure -> {
+                Log.e("Forecast", result.throwable.toString())
+            }
+            is ViewState.Loading -> {}
         }
     }
 }
