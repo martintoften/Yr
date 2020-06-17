@@ -8,6 +8,7 @@ import com.martintoften.yr.ui.model.ViewForecast
 
 class ForecastAdapter : RecyclerView.Adapter<ForecastViewHolder>() {
 
+    private val viewPool = RecyclerView.RecycledViewPool()
     private val items = mutableListOf<ViewForecast>()
 
     fun setItems(items: List<ViewForecast>) {
@@ -18,7 +19,7 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ForecastViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_forecast_parent, parent, false)
-        return ForecastViewHolder(view)
+        return ForecastViewHolder(viewPool, view)
     }
 
     override fun onBindViewHolder(holder: ForecastViewHolder, position: Int) {

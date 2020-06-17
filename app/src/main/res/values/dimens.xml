@@ -4,4 +4,8 @@
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_three_quarter">12dp</dimen>
     <dimen name="margin_half">8dp</dimen>
+    <dimen name="margin_one_quarter">4dp</dimen>
+
+    <dimen name="radius_large">10dp</dimen>
+    <dimen name="elevation_large">10dp</dimen>
 </resources>

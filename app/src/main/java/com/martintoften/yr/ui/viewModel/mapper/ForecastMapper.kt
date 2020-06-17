@@ -18,6 +18,9 @@ fun ForecastResponse.mapViewViewModel(): List<ViewInterval?> {
         val date = parseDate(
             it.start ?: return@map null
         ) ?: return@map null
-        return@map ViewInterval(date)
+        return@map ViewInterval(
+            date = date,
+            temperature = it.temperature?.value ?: 0.0
+        )
     }
 }
