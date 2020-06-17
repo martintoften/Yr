@@ -15,6 +15,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -37,6 +39,7 @@ class SearchViewModel(
     private fun initSearchListener() {
         viewModelScope.launch {
             queryFlow
+                .filter { it.isNotEmpty() }
                 .debounce(DEBOUNCE_DELAY)
                 .onEach { _search.value = ViewState.Loading() }
                 .map { searchRepository.search(it) }

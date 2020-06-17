@@ -14,8 +14,19 @@
         android:background="@null"
         android:hint="@string/search_location_hint"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/loadingSpinner"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.martintoften.yr.ui.custom.SpinnerView
+        android:id="@+id/loadingSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_half"
+        android:layout_marginStart="@dimen/margin_half"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/search"
+        app:layout_constraintTop_toTopOf="@id/search"
+        app:layout_constraintBottom_toBottomOf="@id/search"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchList"

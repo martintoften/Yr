@@ -60,15 +60,17 @@ class MainActivity : AppCompatActivity() {
     private fun handleSearchResult(result: ViewState<List<ViewLocation>>) {
         when (result) {
             is ViewState.Loading -> {
-                Log.d("RESULT", "LOADING")
+                loadingSpinner.isSpinnerVisible(true)
             }
             is ViewState.Success -> {
                 val adapter = searchList.adapter as? SearchAdapter?
                 val locations = result.data
                 adapter?.setItems(locations)
+                loadingSpinner.isSpinnerVisible(false)
             }
             is ViewState.Failure -> {
-                Log.d("RESULT", "FAILURE")
+                Log.e("Forecast", result.throwable.toString())
+                loadingSpinner.isSpinnerVisible(false)
             }
         }
     }
