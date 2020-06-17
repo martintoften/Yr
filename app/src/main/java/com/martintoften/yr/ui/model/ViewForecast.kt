@@ -9,5 +9,6 @@ data class ViewForecast(
 
 data class ViewInterval(
     val date: Date,
-    val temperature: Double
+    val temperature: Double,
+    val weatherSymbol: ViewWeatherSymbol?
 )
