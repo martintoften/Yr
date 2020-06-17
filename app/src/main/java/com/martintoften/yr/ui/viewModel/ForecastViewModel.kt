@@ -6,13 +6,21 @@ import androidx.lifecycle.viewModelScope
 import com.martintoften.yr.network.model.NetworkResult
 import com.martintoften.yr.network.model.forecast.ForecastResponse
 import com.martintoften.yr.repository.ForecastRepository
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class ForecastViewModel(
+    locationId: String,
     private val forecastRepository: ForecastRepository
 ) : ViewModel() {
 
-    fun getForecast(locationId: String) {
+    init {
+        getForecast(locationId)
+    }
+
+    val forecast = MutableStateFlow("")
+
+    private fun getForecast(locationId: String) {
         viewModelScope.launch {
             val result = forecastRepository.getForecast(locationId)
             handleForecastResult(result)

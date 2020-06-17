@@ -1,15 +1,24 @@
 package com.martintoften.yr.ui
 
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.martintoften.yr.R
 import com.martintoften.yr.ui.model.ViewLocation
 import com.martintoften.yr.ui.viewModel.ForecastViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.martintoften.yr.ui.viewModel.factory.ForecastViewModelFactory
+import kotlinx.coroutines.flow.collect
+import org.koin.android.ext.android.get
 
 class ForecastActivity : AppCompatActivity() {
 
-    private val forecastViewModel by viewModel<ForecastViewModel>()
+    private val forecastViewModel by viewModels<ForecastViewModel> {
+        val location = intent.extras?.getParcelable<ViewLocation>(LOCATION)
+            ?: throw IllegalStateException("Location id must not be null")
+        ForecastViewModelFactory(location.id, get())
+    }
 
     companion object {
         const val LOCATION = "LOCATION"
@@ -22,13 +31,8 @@ class ForecastActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        val location = intent.extras?.getParcelable<ViewLocation>(LOCATION)
-        initLocation(location)
-    }
-
-    private fun initLocation(location: ViewLocation?) {
-        if (location != null) {
-            forecastViewModel.getForecast(location.id)
+        lifecycleScope.launchWhenStarted {
+            forecastViewModel.forecast.collect { Log.d("hello", "") }
         }
     }
 }
