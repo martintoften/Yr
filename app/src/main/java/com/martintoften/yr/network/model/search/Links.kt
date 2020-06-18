@@ -18,7 +18,6 @@ data class Links(
     val mapFeature: MapFeature? = null,
     val notifications: Notifications? = null,
     val now: Now? = null,
-    val observations: List<Observation>? = null,
     val pollen: Pollen? = null,
     val self: Self? = null
 )
