@@ -4,6 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.martintoften.yr.R
 import com.martintoften.yr.extensions.getDrawableIdByName
+import com.martintoften.yr.extensions.getString
 import com.martintoften.yr.ui.model.ViewInterval
 import com.martintoften.yr.util.getReadableHours
 import com.martintoften.yr.util.getWeatherType
@@ -19,6 +20,7 @@ class ForecastIntervalViewHolder(
         containerView.time.text = getReadableHours(interval.date)
         val symbol = getWeatherSymbol(interval) ?: return
         containerView.symbol.setImageResource(symbol)
+        containerView.precipitation.text = getPrecipitation(interval)
     }
 
     private fun getTemperature(interval: ViewInterval): String {
@@ -30,5 +32,11 @@ class ForecastIntervalViewHolder(
         val type = getWeatherType(weatherSymbol.type)
         val variant = getWeatherVariant(weatherSymbol.variant).value
         return containerView.context.getDrawableIdByName("ic_$type$variant")
+    }
+
+    private fun getPrecipitation(interval: ViewInterval): String {
+        val precipitation = interval.precipitation ?: return ""
+        if (precipitation.max <= 0) return ""
+        return containerView.getString(R.string.precipitation, precipitation.min, precipitation.max)
     }
 }

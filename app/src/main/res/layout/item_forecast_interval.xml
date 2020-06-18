@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="16" />
+        tools:text="16.00" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/symbol"
@@ -25,7 +25,7 @@
         android:layout_marginStart="@dimen/margin_normal"
         app:layout_constraintStart_toEndOf="@id/time"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/temperature"
@@ -35,6 +35,20 @@
         style="@style/SmallText"
         app:layout_constraintStart_toEndOf="@id/symbol"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="29" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/precipitation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_normal"
+        style="@style/SmallTextSecondaryColor"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@id/temperature"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="0.1-0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

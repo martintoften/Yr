@@ -13,7 +13,8 @@ data class ViewForecast(
 data class ViewInterval(
     val date: Date,
     val temperature: Double,
-    val weatherSymbol: ViewWeatherSymbol?
+    val weatherSymbol: ViewWeatherSymbol?,
+    val precipitation: ViewPrecipitation?
 ) : Diffable {
     override fun getIdentifier() = date.time.toString()
 }

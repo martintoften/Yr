@@ -2,4 +2,5 @@
     <string name="app_name">Yr</string>
     <string name="search_location_hint">Søk etter et sted…</string>
     <string name="celsius">%s\u2103</string>
+    <string name="precipitation">%s-%s mm</string>
 </resources>
