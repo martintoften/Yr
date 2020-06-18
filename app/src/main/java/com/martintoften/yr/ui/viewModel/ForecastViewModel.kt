@@ -9,6 +9,7 @@ import com.martintoften.yr.ui.model.ViewForecast
 import com.martintoften.yr.ui.model.ViewState
 import com.martintoften.yr.ui.viewModel.mapper.sortGroupAndMapForecasts
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class ForecastViewModel(
@@ -16,7 +17,8 @@ class ForecastViewModel(
     private val forecastRepository: ForecastRepository
 ) : ViewModel() {
 
-    val forecast = MutableStateFlow<ViewState<List<ViewForecast>>?>(null)
+    private val _forecast = MutableStateFlow<ViewState<List<ViewForecast>>?>(null)
+    val forecast = _forecast as StateFlow<ViewState<List<ViewForecast>>?>
 
     init {
         getForecast(locationId)
@@ -24,7 +26,7 @@ class ForecastViewModel(
 
     private fun getForecast(locationId: String) {
         viewModelScope.launch {
-            forecast.value = ViewState.Loading()
+            _forecast.value = ViewState.Loading()
             val result = forecastRepository.getForecast(locationId)
             handleForecastResult(result)
         }
@@ -34,10 +36,10 @@ class ForecastViewModel(
         when (result) {
             is NetworkResult.Success -> {
                 val intervals = result.value.sortGroupAndMapForecasts()
-                forecast.value = ViewState.Success(intervals)
+                _forecast.value = ViewState.Success(intervals)
             }
             is NetworkResult.Error -> {
-                forecast.value = ViewState.Failure(result.throwable)
+                _forecast.value = ViewState.Failure(result.throwable)
             }
         }
     }
