@@ -11,7 +11,7 @@ import com.martintoften.yr.ui.list.search.SearchAdapter
 import com.martintoften.yr.ui.model.ViewLocation
 import com.martintoften.yr.ui.model.ViewState
 import com.martintoften.yr.ui.viewModel.SearchViewModel
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filterNotNull
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,7 +22,7 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_search)
         init()
     }
 
