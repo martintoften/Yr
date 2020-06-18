@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.martintoften.yr.R
+import com.martintoften.yr.extensions.toast
 import com.martintoften.yr.ui.list.forecast.ForecastAdapter
 import com.martintoften.yr.ui.model.ViewForecast
 import com.martintoften.yr.ui.model.ViewLocation
@@ -68,6 +69,7 @@ class ForecastActivity : AppCompatActivity() {
             is ViewState.Failure -> {
                 Log.e("Forecast", result.throwable.toString())
                 overlay.isOverlayVisible(false)
+                toast(getString(R.string.forecast_error))
             }
             is ViewState.Loading -> {
                 overlay.isOverlayVisible(true)

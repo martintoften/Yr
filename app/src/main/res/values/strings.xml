@@ -3,4 +3,5 @@
     <string name="search_location_hint">Søk etter et sted…</string>
     <string name="celsius">%s\u2103</string>
     <string name="precipitation">%s-%s mm</string>
+    <string name="forecast_error">Ikke mulig å hente værmelding. Prøv igjen!</string>
 </resources>

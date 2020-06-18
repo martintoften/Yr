@@ -8,9 +8,11 @@ import com.martintoften.yr.repository.ForecastRepository
 import com.martintoften.yr.ui.model.ViewForecast
 import com.martintoften.yr.ui.model.ViewState
 import com.martintoften.yr.ui.viewModel.mapper.sortGroupAndMapForecasts
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ForecastViewModel(
     locationId: String,
@@ -27,7 +29,9 @@ class ForecastViewModel(
     private fun getForecast(locationId: String) {
         viewModelScope.launch {
             _forecast.value = ViewState.Loading()
-            val result = forecastRepository.getForecast(locationId)
+            val result = withContext(Dispatchers.IO) {
+                forecastRepository.getForecast(locationId)
+            }
             handleForecastResult(result)
         }
     }
