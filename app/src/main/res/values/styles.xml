@@ -12,6 +12,7 @@
         <item name="colorOnSurface">@color/grey</item>
         <item name="colorOnBackgroundSecondary">@color/grey</item>
         <item name="android:colorBackground">@android:color/white</item>
+        <item name="colorOnBackgroundTertiary">@color/red</item>
 
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@android:color/white</item>

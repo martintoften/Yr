@@ -1,6 +1,7 @@
 package com.martintoften.yr.extensions
 
 import android.graphics.drawable.Drawable
+import android.util.TypedValue
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.DimenRes
@@ -10,6 +11,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.google.android.material.textfield.TextInputEditText
+import com.martintoften.yr.R
 
 fun View.isVisible(bool: Boolean?, nonVisibleState: Int = View.GONE) {
     visibility = if (bool == true) View.VISIBLE else nonVisibleState
@@ -28,4 +30,10 @@ fun TextInputEditText.getDrawableWithTint(@ColorInt tintColor: Int, @DrawableRes
     val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable)
     DrawableCompat.setTint(wrappedDrawable, tintColor)
     return wrappedDrawable
+}
+
+fun View.getThemeColor(resId: Int): Int {
+    val typedValue = TypedValue()
+    context.theme.resolveAttribute(resId, typedValue, true)
+    return typedValue.data
 }

@@ -2,4 +2,5 @@
 <resources>
     <attr name="colorOnBackgroundPrimary" format="reference"/>
     <attr name="colorOnBackgroundSecondary" format="reference"/>
+    <attr name="colorOnBackgroundTertiary" format="reference"/>
 </resources>

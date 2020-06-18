@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.martintoften.yr.R
 import com.martintoften.yr.extensions.getDrawableIdByName
 import com.martintoften.yr.extensions.getString
+import com.martintoften.yr.extensions.getThemeColor
 import com.martintoften.yr.ui.model.ViewInterval
 import com.martintoften.yr.util.getReadableHours
 import com.martintoften.yr.util.getWeatherType
@@ -16,11 +17,18 @@ class ForecastIntervalViewHolder(
     override val containerView: View
 ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
     fun bindItem(interval: ViewInterval) {
+        containerView.temperature.setTextColor(getTemperatureColor(interval))
         containerView.temperature.text = getTemperature(interval)
         containerView.time.text = getReadableHours(interval.date)
         val symbol = getWeatherSymbol(interval) ?: return
         containerView.symbol.setImageResource(symbol)
         containerView.precipitation.text = getPrecipitation(interval)
+    }
+
+    private fun getTemperatureColor(interval: ViewInterval): Int {
+        val colorId = if (interval.temperature > 0.0) R.attr.colorOnBackgroundTertiary
+        else R.attr.colorSecondary
+        return containerView.getThemeColor(colorId)
     }
 
     private fun getTemperature(interval: ViewInterval): String {
