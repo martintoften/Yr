@@ -46,6 +46,6 @@
     <style name="ToolbarTheme" parent="@style/Widget.AppCompat.Toolbar">
         <item name="titleTextColor">?attr/colorOnBackground</item>
         <item name="android:background">?android:attr/colorBackground</item>
-        <item name="navigationIcon">?attr/homeAsUpIndicator</item>
+        <item name="navigationIcon">@drawable/ic_arrow_back</item>
     </style>
 </resources>
