@@ -20,8 +20,7 @@ import org.koin.android.ext.android.get
 class ForecastActivity : AppCompatActivity() {
 
     private val forecastViewModel by viewModels<ForecastViewModel> {
-        val location = intent.extras?.getParcelable<ViewLocation>(LOCATION)
-            ?: throw IllegalStateException("Location id must not be null")
+        val location = getLocation() ?: throw IllegalStateException("Location id must not be null")
         ForecastViewModelFactory(location.id, get())
     }
 
@@ -36,8 +35,15 @@ class ForecastActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        initToolbar()
         initList()
         initObservers()
+    }
+
+    private fun initToolbar() {
+        val location = getLocation() ?: return
+        toolbar.title = location.name
+        toolbar.setNavigationOnClickListener { finish() }
     }
 
     private fun initList() {
@@ -68,4 +74,6 @@ class ForecastActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun getLocation(): ViewLocation? = intent.extras?.getParcelable(LOCATION)
 }

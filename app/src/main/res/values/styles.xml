@@ -13,6 +13,8 @@
 
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@android:color/white</item>
+
+        <item name="toolbarStyle">@style/ToolbarTheme</item>
     </style>
 
     <style name="AppTheme" parent="BaseTheme"/>
@@ -27,5 +29,11 @@
         <item name="android:textSize">@dimen/text_small</item>
         <item name="android:textColor">?attr/colorOnBackground</item>
         <item name="android:lineSpacingMultiplier">1.4</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="titleTextColor">?attr/colorOnBackground</item>
+        <item name="android:background">?android:attr/colorBackground</item>
+        <item name="navigationIcon">?attr/homeAsUpIndicator</item>
     </style>
 </resources>
