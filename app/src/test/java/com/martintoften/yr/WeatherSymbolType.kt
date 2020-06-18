@@ -7,7 +7,7 @@ import org.junit.Test
 class WeatherSymbolType {
 
     @Test
-    fun `0-1`() {
+    fun `-1`() {
         val result = getWeatherType(-1)
         assertEquals("-1", result)
     }

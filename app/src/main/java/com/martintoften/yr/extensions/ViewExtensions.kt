@@ -11,7 +11,6 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.google.android.material.textfield.TextInputEditText
-import com.martintoften.yr.R
 
 fun View.isVisible(bool: Boolean?, nonVisibleState: Int = View.GONE) {
     visibility = if (bool == true) View.VISIBLE else nonVisibleState
