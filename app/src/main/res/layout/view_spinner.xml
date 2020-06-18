@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:indeterminate="true"
-        android:indeterminateTint="?attr/colorPrimaryDark"
+        android:indeterminateTint="?attr/colorOnPrimary"
         android:indeterminateTintMode="src_atop"
         style="?android:attr/progressBarStyleSmall" />
 

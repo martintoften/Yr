@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SearchView">
+        <attr name="searchHintColor" format="color" />
+        <attr name="searchTextColor" format="color" />
+        <attr name="iconColor" format="color" />
+        <attr name="iconColorActive" format="color" />
+    </declare-styleable>
+</resources>

@@ -3,7 +3,6 @@ package com.martintoften.yr.extensions
 import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.annotation.ColorInt
-import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -23,8 +22,6 @@ fun View.getString(@StringRes resId: Int, vararg formatArgs: Any?): String {
 fun View.getPxSize(@DimenRes id: Int) = resources.getDimensionPixelSize(id)
 
 fun View.getDrawableById(@DrawableRes id: Int) = ContextCompat.getDrawable(context, id)
-
-fun View.getColorById(@ColorRes id: Int) = ContextCompat.getColor(context, id)
 
 fun TextInputEditText.getDrawableWithTint(@ColorInt tintColor: Int, @DrawableRes drawable: Int): Drawable? {
     val unwrappedDrawable = AppCompatResources.getDrawable(context, drawable) ?: return null

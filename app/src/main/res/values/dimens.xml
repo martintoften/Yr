@@ -10,4 +10,7 @@
     <dimen name="elevation_large">10dp</dimen>
 
     <dimen name="text_input">15sp</dimen>
+
+    <dimen name="text_normal">15dp</dimen>
+    <dimen name="text_small">13dp</dimen>
 </resources>

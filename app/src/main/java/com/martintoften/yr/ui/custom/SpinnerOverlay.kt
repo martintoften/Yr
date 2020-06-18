@@ -21,7 +21,6 @@ class SpinnerOverlay : FrameLayout {
 
     private fun init() {
         inflate(context, R.layout.view_spinner_overlay, this)
-        setBackgroundResource(R.color.spinner_overlay_default)
         visibility = View.GONE
         isClickable = true
         isFocusable = true

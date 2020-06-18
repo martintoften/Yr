@@ -8,7 +8,6 @@ import android.view.View.OnTouchListener
 import androidx.core.widget.doOnTextChanged
 import com.google.android.material.textfield.TextInputEditText
 import com.martintoften.yr.R
-import com.martintoften.yr.extensions.getColorById
 import com.martintoften.yr.extensions.getDrawableById
 import com.martintoften.yr.extensions.getDrawableWithTint
 import com.martintoften.yr.extensions.getPxSize
@@ -23,14 +22,30 @@ class SearchView : TextInputEditText {
     private val endPadding = getPxSize(R.dimen.margin_three_quarter)
     private val drawablePadding = getPxSize(R.dimen.margin_one_quarter)
 
+    private var searchTextColor = 0
+    private var searchHintColor = 0
+    private var iconColor = 0
+    private var iconColorActive = 0
+
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+        parseAttributes(attrs)
         init()
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle) {
+        parseAttributes(attrs)
         init()
+    }
+
+    private fun parseAttributes(attrs: AttributeSet?) {
+        val a = context.obtainStyledAttributes(attrs, R.styleable.SearchView)
+        searchTextColor = a.getColor(R.styleable.SearchView_searchTextColor, 0)
+        searchHintColor = a.getColor(R.styleable.SearchView_searchHintColor, 0)
+        iconColor = a.getColor(R.styleable.SearchView_iconColor, 0)
+        iconColorActive = a.getColor(R.styleable.SearchView_iconColorActive, 0)
+        a.recycle()
     }
 
     private fun init() {
@@ -45,8 +60,8 @@ class SearchView : TextInputEditText {
         hint = getString(R.string.search_location_hint)
         setBackgroundResource(R.drawable.input_background)
         setTextSize(TypedValue.COMPLEX_UNIT_PX, getPxSize(R.dimen.text_input).toFloat())
-        setHintTextColor(getColorById(R.color.text_input_hint))
-        setTextColor(getColorById(R.color.text_input))
+        setTextColor(searchTextColor)
+        setHintTextColor(searchHintColor)
         setPadding(startPadding, verticalPadding, endPadding, verticalPadding)
     }
 
@@ -68,8 +83,8 @@ class SearchView : TextInputEditText {
     }
 
     private fun updateDrawableState(input: String) {
-        val tintColor = if (input.isNotEmpty()) getColorById(R.color.primary)
-        else getColorById(R.color.icon_default_color)
+        val tintColor = if (input.isNotEmpty()) iconColorActive
+        else iconColor
 
         val startDrawable = getDrawableWithTint(tintColor, R.drawable.ic_search)
         val endDrawable = getDrawableById(R.drawable.ic_cross)
@@ -78,7 +93,7 @@ class SearchView : TextInputEditText {
     }
 
     private fun initClearListener() {
-        setOnTouchListener(OnTouchListener { v, event ->
+        setOnTouchListener(OnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
                 val drawableWidth = compoundDrawables[DRAWABLE_RIGHT].bounds.width()
                 val drawablePadding = endPadding + drawablePadding
