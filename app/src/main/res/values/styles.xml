@@ -38,6 +38,11 @@
         <item name="android:textColor">?attr/colorSecondary</item>
     </style>
 
+    <style name="Header4" parent="NormalText">
+        <item name="android:lineSpacingMultiplier">1.4</item>
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+
     <style name="ToolbarTheme" parent="@style/Widget.AppCompat.Toolbar">
         <item name="titleTextColor">?attr/colorOnBackground</item>
         <item name="android:background">?android:attr/colorBackground</item>
