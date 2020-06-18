@@ -7,14 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <com.google.android.material.textfield.TextInputEditText
+    <com.martintoften.yr.ui.custom.SearchView
         android:id="@+id/search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="@string/search_location_hint"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/loadingSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.martintoften.yr.ui.custom.SpinnerView
@@ -24,9 +22,7 @@
         android:layout_marginEnd="@dimen/margin_half"
         android:layout_marginStart="@dimen/margin_half"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/search"
-        app:layout_constraintTop_toTopOf="@id/search"
-        app:layout_constraintBottom_toBottomOf="@id/search"/>
+        app:layout_constraintTop_toBottomOf="@id/search"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchList"

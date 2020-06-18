@@ -8,4 +8,6 @@
 
     <dimen name="radius_large">10dp</dimen>
     <dimen name="elevation_large">10dp</dimen>
+
+    <dimen name="text_input">15sp</dimen>
 </resources>
