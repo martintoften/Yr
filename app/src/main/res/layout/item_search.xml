@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="@dimen/margin_normal"
-    android:paddingVertical="@dimen/margin_three_quarter">
+    android:paddingVertical="@dimen/margin_three_quarter"
+    android:background="?selectableItemBackground">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/title"
