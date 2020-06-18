@@ -23,6 +23,8 @@ class ForecastIntervalViewHolder(
         val symbol = getWeatherSymbol(interval) ?: return
         containerView.symbol.setImageResource(symbol)
         containerView.precipitation.text = getPrecipitation(interval)
+        containerView.wind.rotation = interval.wind?.direction?.toFloat() ?: 0f
+        containerView.windSpeed.text = interval.wind?.speed.toString()
     }
 
     private fun getTemperatureColor(interval: ViewInterval): Int {

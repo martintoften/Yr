@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         style="@style/SmallText"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/symbol"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="16.00" />
@@ -36,19 +37,44 @@
         app:layout_constraintStart_toEndOf="@id/symbol"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/precipitation"
         tools:text="29" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/precipitation"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginStart="@dimen/margin_half"
+        android:gravity="center_horizontal"
         style="@style/SmallTextSecondaryColor"
-        app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@id/temperature"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/windSpeed"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="0.1-0.5" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/windSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_half"
+        android:layout_marginEnd="@dimen/margin_half"
+        style="@style/SmallText"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@id/precipitation"
+        app:layout_constraintEnd_toStartOf="@id/wind"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="1" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/wind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_half"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/ic_arrow"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
