@@ -11,7 +11,7 @@
         android:id="@+id/search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:searchTextColor="?attr/colorOnBackground"
+        app:searchTextColor="?attr/colorOnBackgroundPrimary"
         app:searchHintColor="?attr/colorOnSurface"
         app:iconColor="?attr/colorOnSurface"
         app:iconColorActive="?attr/colorSecondary"
